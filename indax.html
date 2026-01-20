@@ -1,0 +1,561 @@
+<!-- CHAT BOT BUTTON -->
+<div id="chatBtn" onclick="toggleChat()">💬</div>
+
+<!-- CHAT BOX -->
+<div id="chatBox">
+  <div id="chatHeader">Sasiya Editzz Bot 🤖</div>
+  <div id="chatMessages"></div>
+
+  <div id="chatInputArea">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<style>
+#chatBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#000;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  cursor:pointer;
+  z-index:9999;
+}
+
+#chatBox{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:320px;
+  background:#111;
+  border-radius:20px;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:9999;
+}
+
+#chatHeader{
+  background:#ff0057;
+  padding:15px;
+  text-align:center;
+  font-weight:bold;
+}
+
+#chatMessages{
+  padding:15px;
+  height:260px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.msg{
+  margin-bottom:12px;
+}
+.user{
+  text-align:right;
+  color:#25D366;
+}
+.bot{
+  text-align:left;
+  color:#fff;
+}
+
+#chatInputArea{
+  display:flex;
+  border-top:1px solid #333;
+}
+#chatInputArea input{
+  flex:1;
+  padding:10px;
+  border:none;
+  outline:none;
+}
+#chatInputArea button{
+  padding:10px 15px;
+  border:none;
+  background:#25D366;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+
+<script>
+function toggleChat(){
+  const box=document.getElementById("chatBox");
+  box.style.display = box.style.display==="flex" ? "none" : "flex";
+}
+
+function sendMessage(){
+  const input=document.getElementById("userInput");
+  const msg=input.value.trim();
+  if(msg==="") return;
+
+  addMsg(msg,"user");
+  input.value="";
+
+  setTimeout(()=>botReply(msg.toLowerCase()),500);
+}
+
+function addMsg(text,type){
+  const chat=document.getElementById("chatMessages");
+  const div=document.createElement("div");
+  div.className="msg "+type;
+  div.innerText=text;
+  chat.appendChild(div);
+  chat.scrollTop=chat.scrollHeight;
+}
+
+function botReply(msg){
+  let reply="Sorry, I can help with photo editing, video editing & logo editing.";
+
+  if(msg.includes("photo")){
+    reply="📸 Photo Editing includes color correction, retouching, background remove & enhancement.";
+  }
+  else if(msg.includes("price") || msg.includes("cost")){
+    reply="💰 Prices depend on project type. Please contact us on WhatsApp for exact pricing.";
+  }
+  else if(msg.includes("video")){
+    reply="🎬 We do YouTube, TikTok, Reels & cinematic video editing.";
+  }
+  else if(msg.includes("logo")){
+    reply="🎨 We design modern & professional logos for brands.";
+  }
+  else if(msg.includes("contact") || msg.includes("whatsapp")){
+    reply="📞 Contact us on WhatsApp: +94 770 475 809";
+  }
+  else if(msg.includes("email")){
+    reply="📧 Email us at saaiya@gmail.com";
+  }
+  else if(msg.includes("hi") || msg.includes("hello")){
+    reply="Hello 👋 I am Sasiya Editzz Bot. How can I help you?";
+  }
+
+  addMsg(reply,"bot");
+}
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sasiya Editzz | Creative Editing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#0b0b0b;
+  color:#fff;
+  scroll-behavior:smooth;
+}
+header{
+  min-height:100vh;
+  background:linear-gradient(135deg,#ff0057,#6a00ff);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+header h1{
+  font-size:52px;
+  margin-bottom:10px;
+}
+header p{
+  font-size:20px;
+  max-width:600px;
+  opacity:0.95;
+}
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#000;
+  padding:10px;
+  text-align:center;
+  z-index:1000;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+}
+nav a:hover{color:#ff0057;}
+
+.btn{
+  display:inline-block;
+  padding:14px 30px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:bold;
+  margin:10px;
+}
+.whatsapp{
+  background:#25D366;
+  color:#000;
+}
+.email{
+  background:#ff0057;
+  color:#fff;
+}
+
+section{
+  padding:80px 20px;
+  max-width:1200px;
+  margin:auto;
+  text-align:center;
+}
+
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+}
+.card{
+  background:#151515;
+  width:300px;
+  border-radius:18px;
+  padding:20px;
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 15px 40px rgba(255,0,87,0.4);
+}
+.card img{
+  width:100%;
+  border-radius:14px;
+}
+.card h3{color:#ff0057;}
+
+.contact-box{
+  background:#111;
+  padding:50px 20px;
+  border-radius:25px;
+}
+
+footer{
+  background:#000;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+  opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HOME -->
+<header id="home">
+  <h1>Sasiya Editzz</h1>
+  <p>Video Editing • Photo Editing • Logo Editing  
+     Professional Creative Solutions for Your Brand</p>
+
+  <a class="btn whatsapp" href="https://wa.me/94770475809">💬 WhatsApp Now</a>
+  <a class="btn email" href="mailto:saaiya@gmail.com">📧 Email Us</a>
+</header>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>🔥 Our Services</h2>
+  <p>High quality editing with modern style</p><br>
+
+  <div class="cards">
+    <div class="card">
+      <img src="https://picsum.photos/400/250?10">
+      <h3>🎬 Video Editing</h3>
+      <p>YouTube, Reels, TikTok, cinematic effects & transitions</p>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/400/250?11">
+      <h3>📸 Photo Editing</h3>
+      <p>Retouching, color grading & background remove</p>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/400/250?12">
+      <h3>🎨 Logo Editing</h3>
+      <p>Modern logo design & redesign for businesses</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <h2>📞 Contact Sasiya Editzz</h2>
+    <p>Need professional editing? Contact us now!</p><br>
+
+    <a class="btn whatsapp" href="https://wa.me/94770475809">WhatsApp Chat</a>
+    <a class="btn email" href="mailto:saaiya@gmail.com">Send Email</a>
+
+    <p style="margin-top:30px;">
+      📱 +94 770 475 809 <br>
+      📧 saaiya@gmail.com
+    </p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Sasiya Editzz | Creative Editing Studio
+</footer>
+
+</body>
+</html>
+<script>
+    function toggleChat(){
+      const box=document.getElementById("chatBox");
+      box.style.display = box.style.display==="flex" ? "none" : "flex";
+    }
+    
+    function sendMessage(){
+      const input=document.getElementById("userInput");
+      const msg=input.value.trim();
+      if(msg==="") return;
+    
+      addMsg(msg,"user");
+      input.value="";
+      setTimeout(()=>botReply(msg.toLowerCase()),600);
+    }
+    
+    function addMsg(text,type){
+      const chat=document.getElementById("chatMessages");
+      const div=document.createElement("div");
+      div.className="msg "+type;
+      div.innerText=text;
+      chat.appendChild(div);
+      chat.scrollTop=chat.scrollHeight;
+    }
+    
+    function botReply(msg){
+      let reply="🤖 I specialize in Photo Editing. Ask me about retouching, color correction, background removal or quality improvement.";
+    
+      /* PHOTO EDITING CORE KNOWLEDGE */
+      if(msg.includes("photo") || msg.includes("image")){
+        reply="📸 Photo editing improves image quality using color correction, retouching, sharpening, background editing & lighting balance.";
+      }
+      else if(msg.includes("retouch")){
+        reply="✨ Retouching removes skin blemishes, pimples, wrinkles and smooths skin while keeping natural texture.";
+      }
+      else if(msg.includes("background")){
+        reply="🖼 Background removal uses masking techniques to cleanly separate subject. Can replace with white, blur or custom background.";
+      }
+      else if(msg.includes("color") || msg.includes("grading")){
+        reply="🎨 Color correction fixes lighting, white balance & contrast. Color grading gives cinematic or stylish mood to photos.";
+      }
+      else if(msg.includes("quality") || msg.includes("hd") || msg.includes("blur")){
+        reply="🔍 Blurry or low quality photos can be enhanced using sharpening, noise reduction & resolution upscaling techniques.";
+      }
+      else if(msg.includes("passport")){
+        reply="🪪 Passport photo editing includes white background, correct size, proper lighting & natural face tone.";
+      }
+      else if(msg.includes("wedding")){
+        reply="💍 Wedding photo editing includes skin tone balance, cinematic color grading & background enhancement.";
+      }
+      else if(msg.includes("logo")){
+        reply="🎨 Logo editing includes resizing, background removal, color enhancement & vector cleanup.";
+      }
+      else if(msg.includes("price") || msg.includes("cost")){
+        reply="💰 Pricing depends on photo count & complexity. Contact us on WhatsApp for exact price.";
+      }
+      else if(msg.includes("whatsapp")){
+        reply="📲 Click WhatsApp button or message +94 770 475 809 for instant support.";
+      }
+      else if(msg.includes("email")){
+        reply="📧 You can email us at saaiya@gmail.com";
+      }
+      else if(msg.includes("hi") || msg.includes("hello")){
+        reply="Hello 👋 I am Sasiya Editzz Photo Editing Bot. Ask me anything about photo editing!";
+      }
+    
+      addMsg(reply,"bot");
+    }
+    </script>
+    <script>
+        function toggleChat(){
+          const box = document.getElementById("chatBox");
+          box.style.display = box.style.display === "flex" ? "none" : "flex";
+        }
+        
+        function sendMessage(){
+          const input = document.getElementById("userInput");
+          const msg = input.value.trim();
+          if(msg === "") return;
+        
+          addMsg(msg,"user");
+          input.value = "";
+          setTimeout(()=>botReply(msg.toLowerCase()),600);
+        }
+        
+        function addMsg(text,type){
+          const chat = document.getElementById("chatMessages");
+          const div = document.createElement("div");
+          div.className = "msg " + type;
+          div.innerText = text;
+          chat.appendChild(div);
+          chat.scrollTop = chat.scrollHeight;
+        }
+        
+        function botReply(msg){
+          let reply = "🤖 මම Sasiya Editzz Photo Editing Bot. ෆොටෝ එඩිටින් ගැන ඕනෑම දෙයක් අහන්න 😊";
+        
+          // Greeting
+          if(msg.includes("හයි") || msg.includes("හෙලෝ") || msg.includes("hello")){
+            reply = "👋 හෙලෝ! ෆොටෝ එඩිටින්, බැක්ග්‍රවුන්ඩ් රිමූව්, රිටච් ගැන අහන්න පුළුවන්.";
+          }
+        
+          // Photo Editing
+          else if(msg.includes("ෆොටෝ") || msg.includes("photo")){
+            reply = "📸 ෆොටෝ එඩිටින් කියන්නේ වර්ණ සරිලන කරීම, පැහැදිලි කිරීම, ලයිට් බැලන්ස්, රිටච් සහ බැක්ග්‍රවුන්ඩ් වෙනස් කිරීම.";
+          }
+        
+          // Retouch
+          else if(msg.includes("රිටච්") || msg.includes("skin")){
+            reply = "✨ රිටච් කිරීමෙන් මුහුණේ කුරුලෑ, කැළැල්, රැලි අඩු කරලා natural look එකක් ලබා දෙනවා.";
+          }
+        
+          // Background remove
+          else if(msg.includes("බැක්") || msg.includes("background")){
+            reply = "🖼 බැක්ග්‍රවුන්ඩ් රිමූව් කරලා white, blur හෝ ඔබ කැමති බැක්ග්‍රවුන්ඩ් එකක් දාන්න පුළුවන්.";
+          }
+        
+          // Color correction
+          else if(msg.includes("වර්ණ") || msg.includes("color")){
+            reply = "🎨 වර්ණ සරිලන කිරීමෙන් ෆොටෝ එකේ ලයිට්, කොන්ට්‍රාස්ට් සහ natural colors balance කරනවා.";
+          }
+        
+          // Blur / HD
+          else if(msg.includes("බ්ලර්") || msg.includes("hd") || msg.includes("පැහැදිලි")){
+            reply = "🔍 බ්ලර් ෆොටෝ sharpening සහ noise reduction techniques වලින් පැහැදිලි කරන්න පුළුවන්.";
+          }
+        
+          // Passport
+          else if(msg.includes("පාස්පෝට්")){
+            reply = "🪪 පාස්පෝට් ෆොටෝ සඳහා white background, correct size සහ natural face tone සකස් කරනවා.";
+          }
+        
+          // Wedding
+          else if(msg.includes("වෙඩින්") || msg.includes("wedding")){
+            reply = "💍 වෙඩින් ෆොටෝ සඳහා cinematic color grading සහ skin tone balance කරනවා.";
+          }
+        
+          // Price
+          else if(msg.includes("මිල") || msg.includes("ගාන") || msg.includes("price")){
+            reply = "💰 මිල ෆොටෝ ගණන සහ වැඩේ අනුව වෙනස් වෙනවා. WhatsApp එකෙන් contact කරන්න.";
+          }
+        
+          // Contact
+          else if(msg.includes("වස්සැප්") || msg.includes("whatsapp")){
+            reply = "📲 WhatsApp: +94770475809
+            <script>
+function toggleChat(){
+  const box = document.getElementById("chatBox");
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage(){
+  const input = document.getElementById("userInput");
+  const msg = input.value.trim();
+  if(msg === "") return;
+
+  addMsg(msg,"user");
+  input.value = "";
+  setTimeout(()=>botReply(msg),500);
+}
+
+function addMsg(text,type){
+  const chat = document.getElementById("chatMessages");
+  const div = document.createElement("div");
+  div.className = "msg " + type;
+  div.innerText = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function has(word,msg){
+  return msg.indexOf(word) !== -1;
+}
+
+function botReply(msg){
+  let reply = "🤖 මම Sasiya Editzz Bot. ෆොටෝ එඩිටින් ගැන අහන්න 😊";
+
+  /* Greeting */
+  if(has("හයි",msg) || has("හෙලෝ",msg) || has("ආයුබෝවන්",msg)){
+    reply = "👋 ආයුබෝවන්! ඔබට ෆොටෝ එඩිටින් ගැන මොනවද දැනගන්න ඕනි?";
+  }
+
+  /* Photo editing */
+  else if(has("ෆොටෝ",msg) && has("එඩිටින්",msg)){
+    reply = "📸 ෆොටෝ එඩිටින් කියන්නේ වර්ණ හරි කිරීම, පැහැදිලි කිරීම, රිටච් සහ බැක්ග්‍රවුන්ඩ් වෙනස් කිරීම.";
+  }
+
+  /* Blur */
+  else if(has("බ්ලර්",msg) || has("පැහැදිලි",msg)){
+    reply = "🔍 බ්ලර් ෆොටෝ sharpening සහ noise reduction භාවිතා කරලා පැහැදිලි කරනවා.";
+  }
+
+  /* Retouch */
+  else if(has("රිටච්",msg) || has("කුරුලෑ",msg) || has("මුහුණ",msg)){
+    reply = "✨ මුහුණේ කුරුලෑ, කැළැල් අඩු කරලා natural look එකක් ලබා දෙනවා.";
+  }
+
+  /* Background */
+  else if(has("බැක්",msg) || has("background",msg)){
+    reply = "🖼 බැක්ග්‍රවුන්ඩ් අයින් කරලා white, blur හෝ ඔබ කැමති background එකක් දාන්න පුළුවන්.";
+  }
+
+  /* Color */
+  else if(has("වර්ණ",msg) || has("කලර්",msg) || has("ලයිට්",msg)){
+    reply = "🎨 වර්ණ හරි කරලා ෆොටෝ එකට ලස්සන look එකක් දෙනවා.";
+  }
+
+  /* Passport */
+  else if(has("පාස්පෝට්",msg)){
+    reply = "🪪 පාස්පෝට් ෆොටෝ සඳහා white background, correct size සහ natural face tone සකස් කරනවා.";
+  }
+
+  /* Wedding */
+  else if(has("වෙඩින්",msg) || has("මැරේජ්",msg)){
+    reply = "💍 වෙඩින් ෆොටෝ cinematic color grading සහ skin tone balance සමඟ edit කරනවා.";
+  }
+
+  /* Price */
+  else if(has("ගාන",msg) || has("මිල",msg)){
+    reply = "💰 මිල ෆොටෝ ගණන සහ වැඩේ අනුව වෙනස් වෙනවා. WhatsApp එකෙන් contact කරන්න.";
+  }
+
+  /* Contact */
+  else if(has("වස්සැප්",msg)){
+    reply = "📲 WhatsApp: +94 770 475 809";
+  }
+
+  else if(has("ඉමේල්",msg)){
+    reply = "📧 Email: saaiya@gmail.com";
+  }
+
+  addMsg(reply,"bot");
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
